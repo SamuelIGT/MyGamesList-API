@@ -4,10 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MyGamesListAPI.Repository;
+using MyGamesListAPI.Services;
 
 namespace MyGamesList_API
 {
@@ -23,6 +26,9 @@ namespace MyGamesList_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DBContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
+   
             services.AddMvc();
         }
 
@@ -35,6 +41,13 @@ namespace MyGamesList_API
             }
 
             app.UseMvc();
+        }
+
+        private void RegisterServices(IServiceCollection services) {
+            services.AddTransient<IGame, GameRepository>();
+            services.AddTransient<IUser, UserRepository>();
+            services.AddTransient<IWishlistItem, WishlistItemRepository>();
+            services.AddTransient<IOwnedGame, OwnedGameRepository>();
         }
     }
 }
