@@ -8,7 +8,13 @@ namespace MyGamesListAPI.Models {
     public class User {
         [Key]
         public long Id { get; set; }
+
+        [StringLength(250)]
+        [Required]
         public string Name { get; set; }
+
+        [StringLength(250)]
+        [Required]
         public string Email { get; set; }
 
         public ICollection<WishlistItem> Wishlist { get; set; }
