@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyGamesListAPI.Models {
     public class Game {
+
         [Key]
         public long Id { get; set; }
         public long SteamAppid { get; set; }
