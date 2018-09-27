@@ -12,7 +12,10 @@ namespace MyGamesListAPI.Models
         [Key]
         public long Id { get; set; }
         public int RankPosition { get; set; }
-        
+
+        [Required]
+        [ForeignKey("Game")]
         public long GameId { get; set; }
+        public Game Game { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace MyGamesListAPI.Models {
         public long Id { get; set; }
         public long SteamAppid { get; set; }
 
+        [Required]
         [StringLength(300)]
         public string Title { get; set; }
 
@@ -22,6 +23,7 @@ namespace MyGamesListAPI.Models {
 
         [StringLength(300)]
         public string HeaderImage { get; set; }
+
         public double Price { get; set; }
 
     }

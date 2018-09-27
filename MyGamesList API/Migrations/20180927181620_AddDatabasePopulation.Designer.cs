@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyGamesListAPI.Repository;
 
 namespace MyGamesListAPI.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20180927181620_AddDatabasePopulation")]
+    partial class AddDatabasePopulation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,6 @@ namespace MyGamesListAPI.Migrations
                     b.Property<long>("SteamAppid");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasMaxLength(300);
 
                     b.HasKey("Id");
@@ -98,8 +99,6 @@ namespace MyGamesListAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("WishlistItems");
@@ -119,11 +118,6 @@ namespace MyGamesListAPI.Migrations
 
             modelBuilder.Entity("MyGamesListAPI.Models.WishlistItem", b =>
                 {
-                    b.HasOne("MyGamesListAPI.Models.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("MyGamesListAPI.Models.User")
                         .WithMany("Wishlist")
                         .HasForeignKey("UserId");
