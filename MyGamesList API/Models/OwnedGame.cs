@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace MyGamesListAPI.Models {
     public class OwnedGame {
         public long Id { get; set; }
-
+        /*
         [Required]
         [ForeignKey("User")]
         public long UserId { get; set; }
-        public User User { get; set; }
+        public User User { get; set; } */
 
         [Required]
         [ForeignKey("Game")]

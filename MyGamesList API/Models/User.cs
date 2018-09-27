@@ -18,7 +18,8 @@ namespace MyGamesListAPI.Models {
         public string Email { get; set; }
 
         public ICollection<WishlistItem> Wishlist { get; set; }
-        //public ICollection<Game> OwnedGames { get; set; }
+
+        public ICollection<OwnedGame> OwnedGames { get; set; }
 
     }
 }
