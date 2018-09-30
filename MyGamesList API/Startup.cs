@@ -32,7 +32,10 @@ namespace MyGamesList_API
             SetupSwagger(services);
 
             services.AddDbContext<DBContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
+                options
+                .UseLazyLoadingProxies()
+                .UseSqlServer(Configuration.GetConnectionString("ConnectionStr")));
+
             RegisterServices(services);
             services.AddMvc();
             
@@ -72,12 +75,12 @@ namespace MyGamesList_API
                     }
                 });
 
-                //string applicationPath = PlatformServices.Default.Application.ApplicationBasePath;
-                //string applicationName = PlatformServices.Default.Application.ApplicationName;
+                string applicationPath = PlatformServices.Default.Application.ApplicationBasePath;
+                string applicationName = PlatformServices.Default.Application.ApplicationName;
 
-                //string xmlDocPath = Path.Combine(applicationPath, $"{applicationName}.xml");
+                string xmlDocPath = Path.Combine(applicationPath, $"{applicationName}.xml");
 
-                //c.IncludeXmlComments(xmlDocPath);
+                c.IncludeXmlComments(xmlDocPath); //This line has to be commented if a new migration will be created. Otherwise it will result in an error with EF.
             });
         }
     }

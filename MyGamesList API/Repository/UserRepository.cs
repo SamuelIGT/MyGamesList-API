@@ -25,9 +25,44 @@ namespace MyGamesListAPI.Repository {
             return user;
         }
 
-        public void Remove(long id) {
+        public bool Remove(long id) {
             User user = db.Users.Find(id);
+
+            if (user == null) {
+                return false;
+            }
+
             db.Users.Remove(user);
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool Update(long id, User newUser) {
+            var user = db.Users.Find(id);
+
+            if (user == null) {
+                return false;
+            }
+
+            user.Name = newUser.Name;
+            user.Email = newUser.Email;
+
+            foreach (OwnedGame ownedGame in newUser.OwnedGames) {
+                if(ownedGame.Id == 0) {
+                    ownedGame.Game = db.Games.Find(ownedGame.Game.Id);
+                    user.OwnedGames.Add(ownedGame);
+                }
+            }
+
+            foreach (WishlistItem item in newUser.Wishlist) {
+                if (item.Id == 0) {
+                    item.Game = db.Games.Find(item.Game.Id);
+                    user.Wishlist.Add(item);
+                }
+            }
+
+            db.SaveChanges();
+            return true;
         }
     }
 }

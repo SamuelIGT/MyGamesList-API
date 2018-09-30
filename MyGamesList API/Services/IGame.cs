@@ -9,6 +9,7 @@ namespace MyGamesListAPI.Services {
         IEnumerable<Game> GetGames { get; }
         Game GetGame(long id);
         void Add(Game game);
-        void Remove(long id);
+        Boolean Remove(long id);
+        Boolean Update(long id, Game newGame);
     }
 }

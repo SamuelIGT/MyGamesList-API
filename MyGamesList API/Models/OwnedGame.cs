@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace MyGamesListAPI.Models {
     public class OwnedGame {
+        [Key]
         public long Id { get; set; }
-
-        [Required]
-        [ForeignKey("Game")]
-        public long GameId { get; set; }
-        public Game Game { get; set; }
-        
         public long PlaytimeForever { get; set; }
         public long PlaytimeTwoWeeks { get; set; }
+
+        [Required]
+        public virtual Game Game { get; set; }
+
     }
 }

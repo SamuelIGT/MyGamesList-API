@@ -17,9 +17,9 @@ namespace MyGamesListAPI.Models {
         [Required]
         public string Email { get; set; }
 
-        public ICollection<WishlistItem> Wishlist { get; set; }
+        public virtual ICollection<WishlistItem> Wishlist { get; set; }
 
-        public ICollection<OwnedGame> OwnedGames { get; set; }
+        public virtual ICollection<OwnedGame> OwnedGames { get; set; }
 
     }
 }

@@ -23,11 +23,39 @@ namespace MyGamesListAPI.Repository {
             return db.OwnedGames.Find(id);
         }
 
-        public void Remove(long id) {
+        public bool Remove(long id) {
             OwnedGame ownedGame = db.OwnedGames.Find(id);
+
+            if (ownedGame == null) {
+                return false;
+            }
 
             db.OwnedGames.Remove(ownedGame);
             db.SaveChanges();
+            return true;
         }
+
+        public bool Update(long id, OwnedGame newGame) {
+            var ownedGame = db.OwnedGames.Find(id);
+
+            if (ownedGame == null) {
+                return false;
+            }
+
+            
+            if (ownedGame.Game.Id != newGame.Game.Id) {
+                var game = db.Games.Find(newGame.Game.Id);
+                ownedGame.Game = game;
+            }
+
+            ownedGame.PlaytimeForever = newGame.PlaytimeForever;
+            ownedGame.PlaytimeTwoWeeks = newGame.PlaytimeTwoWeeks;
+
+            db.SaveChanges();
+            return true;
+
+        }
+
+
     }
 }

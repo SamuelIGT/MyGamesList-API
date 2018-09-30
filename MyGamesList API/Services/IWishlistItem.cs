@@ -9,6 +9,7 @@ namespace MyGamesListAPI.Services {
         IEnumerable<WishlistItem> GetWishlistItems { get; }
         WishlistItem GetWishlistItem(long id);
         void Add(WishlistItem wishlistItem);
-        void Remove(long id);
+        Boolean Remove(long id);
+        Boolean Update(long id, WishlistItem newItem);
     }
 }

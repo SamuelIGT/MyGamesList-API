@@ -9,6 +9,7 @@ namespace MyGamesListAPI.Models {
 
         [Key]
         public long Id { get; set; }
+
         public long SteamAppid { get; set; }
 
         [Required]

@@ -9,6 +9,8 @@ namespace MyGamesListAPI.Services {
         IEnumerable<OwnedGame> GetOwnedGames { get; }
         OwnedGame GetOwnedGame(long id);
         void Add(OwnedGame ownedGame);
-        void Remove(long id);
+        Boolean Remove(long id);
+        Boolean Update(long id, OwnedGame newGame);
+
     }
 }
