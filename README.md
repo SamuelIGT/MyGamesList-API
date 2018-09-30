@@ -17,7 +17,7 @@ A Rest API made with ASP.NET Core + SQL Server to the My Games List app.
 <a name="paths"></a>
 ## Database
 ### ER Diagram
-![ER Diagram](My_Games_List_-_SQL_Server_Diagram_v1.1.png)
+![ER Diagram](https://github.com/SamuelIGT/MyGamesList-API/blob/master/My_Games_List_-_SQL_Server_Diagram_v1.1.PNG?raw=true)
 
 
 <a name="paths"></a>
